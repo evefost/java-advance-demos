@@ -5,7 +5,7 @@ import com.xie.aop.proxy.target.TargetImpl;
 import com.xie.aop.proxy.target.TargetInterface;
 
 /**
- * Created by xieyang on 17/8/31.
+ * 1.普通动态代理
  */
 public class ProxyTest {
 

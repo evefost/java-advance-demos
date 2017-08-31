@@ -6,12 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * Created by Administrator on 2017/8/29.
+ * 3.通过cglib创建动态代理
  */
 public class ProxyTest {
 
     public static void main(String[] args) throws FileNotFoundException {
-
 
         String path = ProxyTest.class.getResource("").getPath();
         String paPath = ProxyTest.class.getPackage().getName().replace(".", "/");
