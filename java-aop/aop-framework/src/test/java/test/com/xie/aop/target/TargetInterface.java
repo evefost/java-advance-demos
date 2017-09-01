@@ -1,4 +1,4 @@
-package com.xie.aop.target;
+package test.com.xie.aop.target;
 
 /**
  * Created by xieyang on 17/8/31.

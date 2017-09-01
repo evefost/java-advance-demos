@@ -1,43 +1,33 @@
 package com.xie.aop.factory;
 
-import com.xie.aop.advice.Advice;
+import com.xie.aop.AdvisedSupport;
 import com.xie.aop.proxy.AopProxy;
 import com.xie.aop.proxy.CglibAopProxy;
 import com.xie.aop.proxy.JdkDynamicAopProxy;
 
+import java.lang.reflect.Proxy;
+
 /**
  * 代理工厂
  */
-public class AopProxyFactory implements AopProxy {
+public class AopProxyFactory {
 
-    private Advice advice;
 
-    private Object target;
+    public AopProxy createProxy(AdvisedSupport config) {
+        Class targetClass = config.getTargetClass();
+        if (config.isProxyTargetClass()) {
 
-    public Advice getAdvice() {
-        return advice;
-    }
-
-    public void setAdvice(Advice advice) {
-        this.advice = advice;
-    }
-
-    public Object getTarget() {
-        return target;
-    }
-
-    public void setTarget(Object target) {
-        this.target = target;
-    }
-
-    public Object getProxy() {
-        if (true) {
-            CglibAopProxy proxy = new CglibAopProxy();
-            return proxy.getProxy();
+            if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
+                JdkDynamicAopProxy proxy = new JdkDynamicAopProxy(config);
+                return proxy;
+            }
+            return new CglibAopProxy(config);
         } else {
-            JdkDynamicAopProxy proxy = new JdkDynamicAopProxy();
-            proxy.getProxy();
+            Class[] interfaces = targetClass.getInterfaces();
+            if(interfaces != null && interfaces.length>0){
+                return new JdkDynamicAopProxy(config);
+            }
+            return new CglibAopProxy(config);
         }
-        return null;
     }
 }

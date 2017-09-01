@@ -1,7 +1,5 @@
 package com.xie.aop.factory;
 
-import com.xie.aop.advice.Advice;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -12,10 +10,13 @@ import java.util.Properties;
 public class BeanFactory {
 
     Properties props = new Properties();
+    private boolean proxyTargetClass;
 
     public BeanFactory(InputStream ips) {
         try {
             props.load(ips);
+            String proxyType = props.getProperty("proxyTargetClass", "false");
+            proxyTargetClass = Boolean.parseBoolean(proxyType);
         } catch (IOException e) {
 
         }
@@ -30,16 +31,14 @@ public class BeanFactory {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (bean instanceof AopProxyFactory) {
+        if (bean instanceof ProxyFactoryBean) {
             Object proxy = null;
             try {
-                AopProxyFactory proxyFactoryBean = (AopProxyFactory) bean;
-                Advice advice = (Advice) Class.forName(props.getProperty(name + ".advice")).newInstance();
                 Object target = Class.forName(props.getProperty(name + ".target")).newInstance();
-                proxyFactoryBean.setAdvice(advice);
+                ProxyFactoryBean proxyFactoryBean = (ProxyFactoryBean) bean;
+                proxyFactoryBean.setProxyTargetClass(proxyTargetClass);
                 proxyFactoryBean.setTarget(target);
-                //创建代理对象
-                proxy = proxyFactoryBean.getProxy();
+                return proxyFactoryBean.getProxy();
             } catch (Exception e) {
                 e.printStackTrace();
             }
