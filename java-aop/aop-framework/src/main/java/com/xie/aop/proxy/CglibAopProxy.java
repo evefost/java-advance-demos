@@ -1,4 +1,4 @@
-package com.xie.aop.proxy.proxy;
+package com.xie.aop.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 /**
  * Created by Administrator on 2017/9/1.
  */
-public class CglibProxy implements AopProxy, MethodInterceptor,Serializable{
+public class CglibAopProxy implements AopProxy, MethodInterceptor,Serializable{
 
 
     private Enhancer enhancer = new Enhancer();
