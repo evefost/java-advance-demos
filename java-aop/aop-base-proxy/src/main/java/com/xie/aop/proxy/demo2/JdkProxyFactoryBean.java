@@ -6,9 +6,9 @@ import com.xie.aop.proxy.demo1.MyInvocationHandler;
 import java.lang.reflect.Proxy;
 
 /**
- * Created by Administrator on 2017/8/28.
+ * jdk动态代理
  */
-public class ProxyFactoryBean {
+public class JdkProxyFactoryBean {
 
     private Advice advice;
 

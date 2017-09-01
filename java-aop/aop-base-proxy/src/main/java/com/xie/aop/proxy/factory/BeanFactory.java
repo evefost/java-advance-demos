@@ -1,6 +1,7 @@
-package com.xie.aop.proxy.demo2;
+package com.xie.aop.proxy.factory;
 
 import com.xie.aop.proxy.advice.Advice;
+import com.xie.aop.proxy.demo2.JdkProxyFactoryBean;
 
 import java.io.IOException;
 import java.io.InputStream;
