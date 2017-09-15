@@ -10,7 +10,24 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>java-aop</module>
+        <module>spring-demo</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>3.8.1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>4.3.7.RELEASE</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
